@@ -9,7 +9,7 @@ export class AppPage {
     return element(by.deepCss('app-root ion-title')).getText();
   }
 
-  getParagraphText() {
-    return element(by.deepCss('app-root ion-content')).getText();
+  getPosts() {
+    return element.all(by.deepCss('app-root ion-content')).getText();
   }
 }

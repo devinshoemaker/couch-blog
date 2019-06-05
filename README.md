@@ -5,10 +5,12 @@
 > An Ionic CouchDB demo project
 
 This is a well tested Ionic CouchDB/PouchDB demo project based on tutorials by Josh Morony.  
-https://joshmorony.com
+https://joshmorony.com  
+https://www.joshmorony.com/couchdb-pouchdb-and-ionic-2-starting-a-new-project/
 
 ## Table of Contents
 
+- [Features](#features)
 - [Install](#install)
 - [Usage](#usage)
     - [PWA](#pwa)
@@ -19,6 +21,10 @@ https://joshmorony.com
 - [Maintainers](#maintainers)
 - [Contributing](#contributing)
 - [License](#license)
+
+## Features
+
+- Fetch data from a CouchDB view via an HTTP request 
 
 ## Install
 

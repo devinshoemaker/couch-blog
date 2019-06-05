@@ -12,8 +12,8 @@ describe('new App', () => {
     expect(page.getTitle()).toContain('Couch Blog');
   });
 
-  it('should be blank', () => {
+  it('should have no posts', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toContain('The world is your oyster.');
+    expect(page.getPosts()).toContain('');
   });
 });

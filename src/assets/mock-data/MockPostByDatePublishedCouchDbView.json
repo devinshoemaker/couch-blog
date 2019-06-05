@@ -1,0 +1,20 @@
+{
+  "total_rows": 1,
+  "offset": 0,
+  "rows": [
+    {
+      "id": "mock-id",
+      "key": "2019-01-01T00:00:00.000Z",
+      "value": {
+        "_id": "mock-id",
+        "_rev": "mock-rev",
+        "type": "post",
+        "title": "Mock Title",
+        "content": "Mock content",
+        "author": "Mock Author",
+        "datePublished": "2019-01-01T00:00:00.000Z",
+        "dateUpdated": "2019-01-01T00:00:00.000Z"
+      }
+    }
+  ]
+}

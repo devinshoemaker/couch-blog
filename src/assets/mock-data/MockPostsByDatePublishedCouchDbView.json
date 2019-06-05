@@ -1,0 +1,34 @@
+{
+  "total_rows": 1,
+  "offset": 0,
+  "rows": [
+    {
+      "id": "mock-id-1",
+      "key": "2019-01-01T00:00:00.000Z",
+      "value": {
+        "_id": "mock-id-1",
+        "_rev": "mock-rev-1",
+        "type": "post",
+        "title": "Mock Title 1",
+        "content": "Mock content 1",
+        "author": "Mock Author 1",
+        "datePublished": "2019-01-01T00:00:00.000Z",
+        "dateUpdated": "2019-01-01T00:00:00.000Z"
+      }
+    },
+    {
+      "id": "mock-id-2",
+      "key": "2019-01-02T00:00:00.000Z",
+      "value": {
+        "_id": "mock-id-2",
+        "_rev": "mock-rev-2",
+        "type": "post",
+        "title": "Mock Title 2",
+        "content": "Mock content 2",
+        "author": "Mock Author 2",
+        "datePublished": "2019-01-02T00:00:00.000Z",
+        "dateUpdated": "2019-01-02T00:00:00.000Z"
+      }
+    }
+  ]
+}
