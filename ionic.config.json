@@ -1,0 +1,7 @@
+{
+  "name": "Couch Blog",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
