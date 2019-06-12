@@ -1,8 +1,8 @@
 {
   "name": "couch-blog",
   "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "author": "Devin Shoemaker",
+  "homepage": "https://github.com/dshoe/",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -58,5 +58,5 @@
     "tslint": "~5.17.0",
     "typescript": "~3.1.6"
   },
-  "description": "An Ionic project"
+  "description": "An Ionic CouchDB demo project"
 }
