@@ -1,7 +1,6 @@
-import { Injectable } from '@angular/core';
+import { Injectable, NgZone } from '@angular/core';
 
-import { map } from 'rxjs/operators';
-import { from, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { DataService } from './data.service';
 import { CouchDbView } from '../models/couch-db-view.model';
@@ -13,14 +12,34 @@ import { Post } from '../models/post.model';
 })
 export class PostService {
   
+  private postSubject: Subject<Post[]> = new Subject();
+
   private byDatePublishedViewPath = 'posts/by_date_published';
 
-  constructor(private dataService: DataService) { }
+  constructor(private dataService: DataService, private zone: NgZone) {
+    this.dataService.db.changes({live: true, since: 'now', include_docs: true}).on('change', (change: any) => {
+      if (change.doc.type === 'post' || change.deleted) {
+          this.emitPosts();
+      }
+    });
+  }
 
-  public getPosts(): Observable<Post[]> {
-    return from(this.dataService.db.query(this.byDatePublishedViewPath)).pipe(
-      map((res: CouchDbView) => res.rows.map((rows: CouchDbViewRow) => rows.value as Post))
-    ) as Observable<Post[]>;
+  public getPosts(): Subject<Post[]> {
+    this.emitPosts();
+
+    return this.postSubject;
+  }
+
+  emitPosts(): void {
+    this.zone.run(() => {
+        this.dataService.db.query('posts/by_date_published').then((data: CouchDbView) => {
+            let posts: Post[] = data.rows.map((row: CouchDbViewRow) => {
+                return row.value;
+            });
+
+            this.postSubject.next(posts);
+        });
+    });
   }
 
 }

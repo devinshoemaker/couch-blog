@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 import { PostService } from '../services/post.service';
 import { Post } from '../models/post.model';
@@ -12,7 +12,7 @@ import { Post } from '../models/post.model';
 })
 export class HomePage implements OnInit {
 
-  private posts$: Observable<Post[]>;
+  private posts$: Subject<Post[]>;
 
   constructor(private postService: PostService) { }
 
