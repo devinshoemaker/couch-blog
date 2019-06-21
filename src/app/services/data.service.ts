@@ -20,6 +20,10 @@ export class DataService {
       retry: true
     };
 
+    this.sync(options);
+  }
+
+  sync (options) {
     this.db.sync(this.remote, options);
   }
 
