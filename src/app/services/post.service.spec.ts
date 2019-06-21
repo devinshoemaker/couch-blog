@@ -1,5 +1,5 @@
-import { inject, TestBed } from '@angular/core/testing';
-import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
+import { TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 import { PostService } from './post.service';
 import { CouchDbView } from '../models/couch-db-view.model';
@@ -25,55 +25,33 @@ describe('PostService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should get one post',
-    inject([HttpTestingController],
-      (httpMock: HttpTestingController) => {
-        const mockCouchDbView: CouchDbView = require('../../assets/mock-data/MockPostByDatePublishedCouchDbView.json');
+  it('should get one post', () => {
+    const mockCouchDbView: CouchDbView = require('../../assets/mock-data/MockPostByDatePublishedCouchDbView.json');
 
-        const mockPosts: Post[] = mockCouchDbView.rows.map((mockCouchDbViewRow: CouchDbViewRow) => {
-          return mockCouchDbViewRow.value;
-        });
+    const mockPosts: Post[] = mockCouchDbView.rows.map((mockCouchDbViewRow: CouchDbViewRow) => {
+      return mockCouchDbViewRow.value;
+    });
 
-        service.getPosts().subscribe((posts: Post[]) => {
-          expect(posts.length).toEqual(1);
-          expect(posts).toEqual(mockPosts);
-        });
+    spyOn(service.db, 'query').and.returnValue(Promise.resolve(mockCouchDbView));
 
-        const mockReq = httpMock.expectOne(byDatePublishedViewUrl);
+    service.getPosts().subscribe((posts: Post[]) => {
+      expect(posts.length).toEqual(1);
+      expect(posts).toEqual(mockPosts);
+    });
+  });
 
-        expect(mockReq.cancelled).toBeFalsy();
-        expect(mockReq.request.responseType).toEqual('json');
+  it('should get two posts', () => {
+    const mockCouchDbView: CouchDbView = require('../../assets/mock-data/MockPostsByDatePublishedCouchDbView.json');
 
-        mockReq.flush(mockCouchDbView);
+    const mockPosts: Post[] = mockCouchDbView.rows.map((mockCouchDbViewRow: CouchDbViewRow) => {
+      return mockCouchDbViewRow.value;
+    });
 
-        httpMock.verify();
-      }
-    )
-  );
+    spyOn(service.db, 'query').and.returnValue(Promise.resolve(mockCouchDbView));
 
-  it('should get two posts',
-    inject([HttpTestingController],
-      (httpMock: HttpTestingController) => {
-        const mockCouchDbView: CouchDbView = require('../../assets/mock-data/MockPostsByDatePublishedCouchDbView.json');
-
-        const mockPosts: Post[] = mockCouchDbView.rows.map((mockCouchDbViewRow: CouchDbViewRow) => {
-          return mockCouchDbViewRow.value;
-        });
-
-        service.getPosts().subscribe((posts: Post[]) => {
-          expect(posts.length).toEqual(2);
-          expect(posts).toEqual(mockPosts);
-        });
-
-        const mockReq = httpMock.expectOne(byDatePublishedViewUrl);
-
-        expect(mockReq.cancelled).toBeFalsy();
-        expect(mockReq.request.responseType).toEqual('json');
-
-        mockReq.flush(mockCouchDbView);
-
-        httpMock.verify();
-      }
-    )
-  );
+    service.getPosts().subscribe((posts: Post[]) => {
+      expect(posts.length).toEqual(2);
+      expect(posts).toEqual(mockPosts);
+    });
+  });
 });

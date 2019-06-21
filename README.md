@@ -7,6 +7,7 @@
 This is a well tested Ionic CouchDB/PouchDB demo project based on tutorials by Josh Morony.  
 https://joshmorony.com  
 https://www.joshmorony.com/couchdb-pouchdb-and-ionic-2-starting-a-new-project/
+https://www.joshmorony.com/couchdb-pouchdb-and-ionic-2-why-pouchdb/
 
 ## Table of Contents
 
@@ -24,7 +25,7 @@ https://www.joshmorony.com/couchdb-pouchdb-and-ionic-2-starting-a-new-project/
 
 ## Features
 
-- Fetch data from a CouchDB view via an HTTP request 
+- Fetch data from a CouchDB view via PouchDB
 
 ## Install
 
